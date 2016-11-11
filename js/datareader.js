@@ -19,9 +19,9 @@ function show(snapshot) {
     fs.writeFileSync('./output/out.txt', "");
     for (var k in entries) {
         var entry = entries[k];
-        var metadata = metaDataExtractor.getMetaData(entry).join('|');
-        fs.appendFileSync('./output/out.txt', metadata+"\n");
-        // console.log(JSON.stringify(entry) + "\n");
-        console.log(metadata + "\n");
+        var metadata = metaDataExtractor.getMetaData(entry).join(',');
+        var row = '1,' + metadata + ',' + entry.title.replace(/[\n\,]/g, '') ;
+        fs.appendFileSync('./output/out.txt', row + '\n');
+        console.log(entry.id + ',' + row);
     }
 };

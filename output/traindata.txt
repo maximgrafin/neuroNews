@@ -1,0 +1,44 @@
+1,5,21,1,Ägypten,null,null,Finanzen,IWF,null,4,IWF gibt Ägypten Hilfskredite in Höhe von bis zu 12 Milliarden Dollar
+1,5,21,1,null,null,null,Fußball,null,null,4,Bayern-Amateure siegen mit starkem Badstuber 
+1,5,21,1,USA,null,null,Regierung,Wahl,EU,4,EU-Spitzen werten Trump-Sieg als Risiko für Verhältnis zu USA
+1,5,21,1,null,null,null,Ski alpin,null,null,3,Ski-Star Lindsey Vonn bricht sich im Training den Oberarm
+1,5,21,1,null,null,null,Fußball,null,null,3,Aufstellungen San Marino - Deutschland
+1,5,21,1,null,null,null,Partei,EU,null,4,Grüne bekennen sich zu starkem Europa
+1,5,21,1,USA,null,null,Film,Fernsehen,null,3,Schauspieler Robert Vaughn mit 83 Jahren gestorben
+1,5,21,14,Frankreich,null,null,Fußball,null,null,3,WM-Quali in Frankreich mit Schweigeminute
+1,5,21,1,Frankreich,null,null,Fußball,null,null,3,WM-Qualifikationsspiel in Frankreich beginnt mit Schweigeminute
+1,5,21,1,null,null,null,Glücksspiele,null,null,4,Gewinnquoten Lotterie Eurojackpot am 11. Novemberber 2016
+1,5,21,1,null,null,null,Inlandspresse,null,null,5,«Hannoversche Allgemeine Zeitung» zur US-Wahl/Demokratie 
+1,5,21,1,null,null,null,Glücksspiele,null,null,3,Gewinnzahlen Eurojackpot am 11. November 2016 
+1,5,21,1,null,null,null,Inlandspresse,null,null,5,«Mittelbayerische Zeitung» (Regensburg) zum Bundespräsidenten 
+1,5,21,1,null,null,null,Nachrichtenüberblick,null,null,4,dpa-Vorausmeldungen kompakt: Das bringt der Tag
+1,5,20,1,Deutschland,Österreich,null,Kriminalität,null,null,4,Erschossener auf Parkplatz in Österreich: Spur führt nach Bayern
+1,5,20,1,USA,null,null,Regierung,Verkehr,null,4,Absperrungen an Trump Tower belasten Verkehr in New York
+0,5,20,26,null,null,null,Fußball,null,null,4,Borussia Dortmund trauert um Vereinslegende Alfred «Aki» Schmidt
+1,5,20,1,USA,null,null,Regierung,null,null,4,Vizepräsident Pence leitet Trumps Übergangsteam
+1,5,20,26,Deutschland,USA,null,Internationale Beziehung,null,null,3,Obama nutzt Europareise für Appell zum Erhalt der Demokratie 
+0,5,20,31,null,null,null,Börse,null,null,3,Ausgewählte Investmentfonds (Teil 4 von 4): Kurse am 11.11.2016 um20:40 Uhr
+0,5,20,31,null,null,null,Börse,null,null,3,Ausgewählte Investmentfonds (Teil 3 von 4): Kurse am 11.11.2016 um20:40 Uhr
+0,5,20,31,null,null,null,Börse,null,null,3,Ausgewählte Investmentfonds (Teil 2 von 4): Kurse am 11.11.2016 um20:40 Uhr
+0,5,20,31,null,null,null,Börse,null,null,3,Ausgewählte Investmentfonds (Teil 1 von 4): Kurse am 11.11.2016 um20:40 Uhr
+0,5,20,31,null,null,null,Börse,null,null,3,Die Frankfurter Börse auf einen Blick
+0,5,20,31,null,null,null,Börse,null,null,3,Ausgewählte Auslandsaktien: Frankfurter Schlusskurse um 20:31 Uhr
+0,5,20,31,null,null,null,Börse,null,null,3,SDAX: Schlusskurse im Späthandel am 11.11.2016 um 20:31 Uhr
+0,5,20,31,null,null,null,Börse,null,null,3,TecDAX: Schlusskurse im Späthandel am 11.11.2016 um 20:31 Uhr
+0,5,20,31,null,null,null,Börse,null,null,3,MDAX: Schlusskurse im Späthandel am 11.11.2016 um 20:31 Uhr
+0,5,20,31,null,null,null,Börse,null,null,3,DAX: Schlusskurse im Späthandel am 11.11.2016 um 20:31 Uhr
+1,5,20,1,USA,null,null,Handel,Wirtschaft,Wahl,4,New Balance rechtfertigt Trump-Unterstützung nach Sturm der Empörung
+1,5,20,1,Bremen,null,null,Fußball,null,null,4,Starkes Kruse-Comeback beim Bremer 5:1-Sieg in Osnabrück
+1,5,20,1,Frankreich,null,null,Fußball,Personalien,null,4,Erstmals eine Frau an Spitze von Frankreichs Profiliga LFP
+1,5,20,33,null,null,null,Fußball,null,null,4,Zitat: Die Trainer Löw und Manzeroli vor dem WM-Qualifikationsspiel
+1,5,20,14,Deutschland,International,Marokko,UN,Klima,Versicherung,4,Sinneswandel oder Strohfeuer: Öko-Investments für mehr Klimaschutz
+1,5,20,1,null,null,null,Fußball,null,null,3,BVB-Legende «Aki» Schmidt im Alter von 81 Jahren gestorben
+1,5,20,32,null,null,null,Vorschau,null,null,3,dpa/audio-Programm für Freitag 11. November 2016 20 Uhr
+1,5,20,1,null,null,null,Glücksspiele,null,null,4,Ergebnisse der Deutschen Sportlotterie 45. Veranstaltung 2016
+1,5,20,1,null,null,null,Inlandspresse,null,null,5,«Lausitzer Rundschau» (Cottbus) zum Anschlag in Afghanistan 
+1,5,20,1,Deutschland,Österreich,null,Bank,null,null,4,Pfandbriefbank PBB will Aktionäre an Heta-Einigung teilhaben lassen
+1,5,20,1,null,null,null,Inlandspresse,null,null,5,«Mannheimer Morgen» zur Bundeszuschuss zur Spitzensportförderung 
+1,5,20,1,null,null,null,Inlandspresse,null,null,5,«Landeszeitung» (Lüneburg) zu Trump: 
+1,5,20,1,null,null,null,Inlandspresse,null,null,5,«Neue Osnabrücker Zeitung» zu Trump und Börse
+1,5,20,1,null,null,null,Inlandspresse,null,null,5,«Badische Zeitung» (Freiburg) zu ungeklärten Morden an zwei Frauen 
+1,5,20,1,null,null,null,Inlandspresse,null,null,5,«Schwäbische Zeitung» (Ravensburg) zum Anschlag in Afghanistan

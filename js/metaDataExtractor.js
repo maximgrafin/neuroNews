@@ -56,36 +56,71 @@ var doMagic = function (obj, props) {
     return result;
 };
 
+var findTag = function(entity, prefix){
+    var result = null;
+    _.each(entity.tags, function(tag){
+        if(tag.indexOf(prefix) >=0){
+            result = tag.substring(prefix.length, tag.length);
+        }
+
+    });
+    return result;
+};
+
+var getMetaData = function (entity) {
+    var metadata = [];
+    var date = new Date(entity.updated);
+    var day = date.getDay();
+    metadata.push(day);
+
+    var hour = date.getHours();
+    metadata.push(hour);
+
+    var genre = findTag(entity, "dpatextgenre:");
+    metadata.push(genre);
+
+    // return metadata;
+        metadata = metadata.concat(doMagic(entity, [{
+        path: ["_preliminary", "slugline_components"],
+        selector: {
+            propName: "type",
+            value: "cpnat:geoArea"
+        },
+        rank: {
+            propName: "name",
+            maxToMin: true,
+            limit: 3
+        },
+        value: {
+            propName: "name"
+        }
+    }, {
+        path: ["_preliminary", "slugline_components"],
+        selector: {
+            propName: "type",
+            value: "dpatype:dpasubject"
+        },
+        rank: {
+            propName: "rank",
+            maxToMin: true,
+            limit: 3
+        },
+        value: {
+            propName: "name"
+        }
+    }, {
+        path: ["categories"],
+        selector: {
+            propName: "scheme",
+            value: "urn:dpa-newslab.com:category.urgency"
+        },
+        value: {
+            propName: "term"
+        }
+    }]));
+    return metadata;
+};
+
 module.exports = {
-    getMetaData: function (entity) {
-        return doMagic(entity, [{
-            path: ["_preliminary", "slugline_components"],
-            selector: {
-                propName: "type",
-                value: "cpnat:geoArea"
-            },
-            rank: {
-                propName: "name",
-                maxToMin: true,
-                limit: 3
-            },
-            value: {
-                propName: "name"
-            }
-        }, {
-            path: ["_preliminary", "slugline_components"],
-            selector: {
-                propName: "type",
-                value: "dpatype:dpasubject"
-            },
-            rank: {
-                propName: "rank",
-                maxToMin: true,
-                limit: 3
-            },
-            value: {
-                propName: "name"
-            }
-        }]).join('|');
-    }
-}
+    getMetaData: getMetaData
+};

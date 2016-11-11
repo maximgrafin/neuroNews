@@ -8,25 +8,20 @@ module.exports =
         firebase.initializeApp({databaseURL: "https://dpahthon1611.firebaseio.com"});
         var bdt_ref = firebase.database().ref('/feuerfrei/aufschaltung/ht0/feed/wire/article/dpasrv_bdt/latest/entries');
 
-        bdt_ref.limitToLast(10).on('value', show);
+        bdt_ref.limitToLast(100).on('value', show);
     }
-}
+};
 
 function show(snapshot) {
     var metaDataExtractor = require('./metaDataExtractor');
+    var fs = require('fs');
     var entries = snapshot.val();
+    fs.writeFileSync('./output/out.txt', "");
     for (var k in entries) {
         var entry = entries[k];
-        console.log(metaDataExtractor.getMetaData(entry).join('|')
-            + "\n"
-            + entry.title.replace("\n", "")
-            + "\n"
-        );
-        //   console.log(entry.updated
-        // + "|" + entry.id
-        // + "|" + entry.title.replace("\n", "")
-        // + "|" + entry.description
-        // + '|' + metaDataExtractor.getMetaData(entry).join('|')
-        // + "\n");
+        var metadata = metaDataExtractor.getMetaData(entry).join('|');
+        fs.appendFileSync('./output/out.txt', metadata+"\n");
+        // console.log(JSON.stringify(entry) + "\n");
+        console.log(metadata + "\n");
     }
 };

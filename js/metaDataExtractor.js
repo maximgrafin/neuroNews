@@ -88,7 +88,7 @@ var getMetaData = function (entity) {
         },
         rank: {
             propName: "name",
-            maxToMin: true,
+            maxToMin: false,
             limit: 3
         },
         value: {
@@ -102,7 +102,7 @@ var getMetaData = function (entity) {
         },
         rank: {
             propName: "rank",
-            maxToMin: true,
+            maxToMin: false,
             limit: 3
         },
         value: {

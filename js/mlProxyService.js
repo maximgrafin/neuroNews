@@ -23,11 +23,13 @@ function handleRequest(request, response) {
             response.writeHead(200, headers);
             response.end();
         } else {
-            var url_parts = url.parse(request.url, true);
-            var meta = metaDataExtractor.getMetaData(query.meta);
+            var meta = metaDataExtractor.getMetaData(body);
             predictor.predictByMeta(meta, function (data) {
                 response.end('It Works!' + data);
             });
+
+            var url_parts = url.parse(request.url, true);
+
         }
     } catch (err) {
         console.log(err);

@@ -127,6 +127,7 @@ var getMetaData = function (pieceOfNews) {
     metadata.push(pieceOfNews.content.length);
 
     // fix here so that pushes coming
+    /*
     cognitiveservices.extractKeywords(pieceOfNews, function(data) {
         metadata.push(data.length);
         metadata.push(data.map(x => common.getJsonValue(x, ' ')).join(' '));
@@ -137,6 +138,7 @@ var getMetaData = function (pieceOfNews) {
                 metadata.push(null);
         }
     });
+    */
 
     return metadata;
 };

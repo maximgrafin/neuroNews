@@ -1,1 +1,2 @@
-1,6,0,27,null,null,null,null,null,null,4,Impressum
+1,6,1,1,Mexiko,USA,null,Börse,null,null,4,Trumps Wahlsieg lässt Mexikos Börse und Peso abstürzen,54,1869
+1,6,1,1,Deutschland,USA,null,Wahl,null,null,4,Barley: AfD nimmt sich mit Trump «hemmungslosen Egoisten zum Vorbild»,69,2489

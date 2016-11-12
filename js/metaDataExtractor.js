@@ -1,6 +1,8 @@
 var _ = require('lodash');
 // Load the core build.
 var _ = require('lodash/core');
+var common = require('./common');
+var cognitiveservices = require('./cognitiveservices');
 
 var getProp = function (obj, paths, _i) {
     var i = _i || 0;
@@ -67,20 +69,20 @@ var findTag = function(entity, prefix){
     return result;
 };
 
-var getMetaData = function (entity) {
+var getMetaData = function (pieceOfNews) {
     var metadata = [];
-    var date = new Date(entity.updated);
+    var date = new Date(pieceOfNews.updated);
     var day = date.getDay();
     metadata.push(day);
 
     var hour = date.getHours();
     metadata.push(hour);
 
-    var genre = findTag(entity, "dpatextgenre:");
+    var genre = findTag(pieceOfNews, "dpatextgenre:");
     metadata.push(genre);
 
     // return metadata;
-        metadata = metadata.concat(doMagic(entity, [{
+        metadata = metadata.concat(doMagic(pieceOfNews, [{
         path: ["_preliminary", "slugline_components"],
         selector: {
             propName: "type",
@@ -118,6 +120,24 @@ var getMetaData = function (entity) {
             propName: "term"
         }
     }]));
+    
+    metadata.unshift(1);
+    metadata.push(pieceOfNews.title.replace(/[\n\,]/g, ''));
+    metadata.push(pieceOfNews.title.length);
+    metadata.push(pieceOfNews.content.length);
+
+    // fix here so that pushes coming
+    cognitiveservices.extractKeywords(pieceOfNews, function(data) {
+        metadata.push(data.length);
+        metadata.push(data.map(x => common.getJsonValue(x, ' ')).join(' '));
+        for (i=0; i < 5; i++) {
+            if (data.length > i)
+                metadata.push(data[i]);
+            else
+                metadata.push(null);
+        }
+    });
+
     return metadata;
 };
 

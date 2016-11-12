@@ -8,11 +8,29 @@ module.exports =
         firebase.initializeApp({databaseURL: "https://dpahthon1611.firebaseio.com"});
         var bdt_ref = firebase.database().ref('/feuerfrei/aufschaltung/ht0/feed/wire/article/dpasrv_bdt/latest/entries');
 
-        bdt_ref.limitToLast(100).on('value', show);
+        bdt_ref.limitToLast(1).on('value', show);
 
         console.log('hello world');
+    },
+    predictEntryScore: function(entry, scoredLabels)
+    {
+        getPrediction(entry, scoredLabels);
     }
 };
+
+function getPrediction(entry, scoredLabels)
+{
+    var url = 'europewest.services.azureml.net';
+    var path = '/workspaces/47d4f830adac4031953eadd43c9f816f/services/e906063e6aff4920a0d1e479798912e1/execute?api-version=2.0&format=swagger';
+    var api_key = 'hlXQ8mZXAjCX+BTH7V0fv4z03KfxGMDgoL0v/VNS33XdXfT2Z/DLOJhzMhHzpcKBxVM6rwQ/onUrflw+y5PHlA==';
+    var headers = { 'Content-Type':'application/json', Authorization: 'Bearer '+ api_key};
+    
+    performRequest(url, path, 'POST', headers, getPredictionServiceJson(entry), function(data) 
+    {
+        console.log('Scored labels:', data.Results.output1[0]['Scored Labels']);
+        scoredLabels(data.Results.output1[0]['Scored Labels']);
+    });
+}
 
 function getDataAsArray(entry)
 {
@@ -24,28 +42,12 @@ function getDataAsArray(entry)
     return metadata;
 }
 
-function getPrediction(entry, scoredLabels)
-{
-    var url = 'europewest.services.azureml.net';
-    var path = '/workspaces/47d4f830adac4031953eadd43c9f816f/services/e906063e6aff4920a0d1e479798912e1/execute?api-version=2.0&format=swagger';
-    var api_key = 'hlXQ8mZXAjCX+BTH7V0fv4z03KfxGMDgoL0v/VNS33XdXfT2Z/DLOJhzMhHzpcKBxVM6rwQ/onUrflw+y5PHlA==';
-    var headers = { 'Content-Type':'application/json', Authorization: 'Bearer '+ api_key};
-    
-    performRequest(url, path, 'POST', headers, getPredictionServiceJson(entry), function(data) {
-    console.log('Scored labels:', data.Results.output1[0]['Scored Labels']);
-    scoredLabels(data.Results.output1[0]['Scored Labels']);
-  });
-}
-
 function performRequest(url, path, method, headers, dataJson, success) 
 {
   var querystring = require('querystring');
   var https = require('https');
   
-  if (method == 'GET') 
-  {
-    path += '?' + dataJson;
-  }
+  if (method == 'GET') { path += '?' + dataJson; }
 
   var options = 
   {
@@ -61,9 +63,7 @@ function performRequest(url, path, method, headers, dataJson, success)
 
     var responseString = '';
 
-    res.on('data', function(data) {
-      responseString += data;
-    });
+    res.on('data', function(data) { responseString += data;});
 
     res.on('end', function() {
       console.log(responseString);
@@ -81,13 +81,21 @@ function getPredictionServiceJson(entry)
     var metadata = getDataAsArray(entry);
     var text = '{ "Inputs": { "input1":  [ { ';
     for (i = 0; i < metadata.length; i++) { 
-        text += '\'Col' + (i+1) + '\':\"' + metadata[i]  + '",';
+        text += '\'Col' + (i+1) + '\':\"' + getJsonValue(metadata[i])  + '",';
     }
     text = text.substring(0, text.length - 1);
     text += '} ], },"GlobalParameters":  { } }';
     console.log(text);
 
     return text;
+}
+
+function getJsonValue(obj)
+{
+    if (obj === undefined || obj === null)
+        return 'null';
+    else
+        return obj;
 }
 
 function show(snapshot) 
@@ -99,9 +107,9 @@ function show(snapshot)
     {
         var entry = entries[k];
         var metadata = getDataAsArray(entry);
-        //getPrediction(entry, function(data) {console.log('Predicted=' + data);});
-        var row = metadata.join(',');
+        var row = metadata.map(x => getJsonValue(x)).join(',');
         fs.appendFileSync('./output/out.txt', row + '\n');
         console.log(entry.id + ',' + row);
+        //getPrediction(entry, function(data) {console.log('Predicted=' + data);});
     }
 };

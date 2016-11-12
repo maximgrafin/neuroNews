@@ -5,24 +5,26 @@
             <h2 class="md-toolbar-tools">
                 <span>{{$ctrl.selected.title}}</span>
             </h2>
-            <span flex></span>
-            <!--<md-switch></md-switch>-->
         </md-toolbar>
     </div>
     <div ng-show="$ctrl.showColors">
-        <md-toolbar class="md-hue-1"
+        <md-toolbar class="md-hue-1 md-toolbar-tools"
                     ng-show="!$ctrl.selected.isLoading && !$ctrl.selected.isInteresting"
                     style="background-color: #FCE4EC; color: maroon">
             <h2 class="md-toolbar-tools">
                 <span>{{$ctrl.selected.title}}</span>
             </h2>
+            <span flex></span>
+            <md-button class="md-raised" ng-click="$ctrl.selected.isInteresting = !$ctrl.selected.isInteresting" >Relevant</md-button>
         </md-toolbar>
-        <md-toolbar class="md-hue-1"
+        <md-toolbar class="md-hue-1 md-toolbar-tools"
                     ng-show="!$ctrl.selected.isLoading && $ctrl.selected.isInteresting"
                     style="background-color: #E8F5E9; color: #1B5E20">
             <h2 class="md-toolbar-tools">
                 <span>{{$ctrl.selected.title}}</span>
             </h2>
+            <span flex></span>
+            <md-button class="md-raised" ng-click="$ctrl.selected.isInteresting = !$ctrl.selected.isInteresting" >Irrelevant</md-button>
         </md-toolbar>
         <md-toolbar class="md-hue-1" ng-show="$ctrl.selected.isLoading"
                     style="background-color: lightgrey; color: black">

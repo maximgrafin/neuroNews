@@ -1,20 +1,35 @@
-<md-toolbar class="md-hue-1" ng-show="!!$ctrl.selected && !$ctrl.selected.isLoading && !$ctrl.selected.isInteresting"
-            style="background-color: #FCE4EC; color: maroon">
-    <h2 class="md-toolbar-tools">
-        <span>{{$ctrl.selected.title}}</span>
-    </h2>
-</md-toolbar>
-<md-toolbar class="md-hue-1" ng-show="!!$ctrl.selected && !$ctrl.selected.isLoading && $ctrl.selected.isInteresting"
-            style="background-color: #E8F5E9; color: #1B5E20">
-    <h2 class="md-toolbar-tools">
-        <span>{{$ctrl.selected.title}}</span>
-    </h2>
-</md-toolbar>
-<md-toolbar class="md-hue-1" ng-show="!!$ctrl.selected && $ctrl.selected.isLoading"
-            style="background-color: lightgrey; color: black">
-    <h2 class="md-toolbar-tools">
-        <span>{{$ctrl.selected.title}}</span>
-    </h2>
-</md-toolbar>
-
-<p ng-bind-html="$ctrl.selected.content"></p>
+<div ng-show="!!$ctrl.selected">
+    <div ng-show="!$ctrl.showColors">
+        <md-toolbar class="md-hue-1 md-toolbar-tools"
+                    style="background-color: lightgrey; color: black">
+            <h2 class="md-toolbar-tools">
+                <span>{{$ctrl.selected.title}}</span>
+            </h2>
+            <span flex></span>
+            <!--<md-switch></md-switch>-->
+        </md-toolbar>
+    </div>
+    <div ng-show="$ctrl.showColors">
+        <md-toolbar class="md-hue-1"
+                    ng-show="!$ctrl.selected.isLoading && !$ctrl.selected.isInteresting"
+                    style="background-color: #FCE4EC; color: maroon">
+            <h2 class="md-toolbar-tools">
+                <span>{{$ctrl.selected.title}}</span>
+            </h2>
+        </md-toolbar>
+        <md-toolbar class="md-hue-1"
+                    ng-show="!$ctrl.selected.isLoading && $ctrl.selected.isInteresting"
+                    style="background-color: #E8F5E9; color: #1B5E20">
+            <h2 class="md-toolbar-tools">
+                <span>{{$ctrl.selected.title}}</span>
+            </h2>
+        </md-toolbar>
+        <md-toolbar class="md-hue-1" ng-show="$ctrl.selected.isLoading"
+                    style="background-color: lightgrey; color: black">
+            <h2 class="md-toolbar-tools">
+                <span>{{$ctrl.selected.title}}</span>
+            </h2>
+        </md-toolbar>
+    </div>
+    <p ng-bind-html="$ctrl.selected.content"></p>
+</div>

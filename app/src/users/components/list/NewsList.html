@@ -1,24 +1,35 @@
 <!-- NOTE: @see ngClick for how to pass data selection to outside expression -->
 <md-list>
-    <md-list-item ng-show="news.isLoading" ng-repeat-start="news in $ctrl.newsList"
-                  ng-click="$ctrl.showDetails({news:news})"
-                  style="background-color: lightgrey; color: black">
-        <div class="md-list-item-text" layout="column">
-            <md-progress-linear md-mode="indeterminate"></md-progress-linear>
-            <h4>{{ news.title}}</h4>
-        </div>
-    </md-list-item>
-    <md-list-item ng-show="!news.isLoading && !news.isInteresting" style="background-color: #FCE4EC; color: maroon"
-                  ng-click="$ctrl.showDetails({news:news})">
-        <div class="md-list-item-text" layout="column">
-            <h4>{{ news.title}}</h4>
-        </div>
-    </md-list-item>
-    <md-list-item ng-show="!news.isLoading && news.isInteresting" ng-repeat-end
-                  ng-click="$ctrl.showDetails({news:news})" style="background-color: #E8F5E9; color: #1B5E20"
-                  ng-click="$ctrl.showDetails({news:news})">
-        <div class="md-list-item-text" layout="column">
-            <h4>{{ news.title}}</h4>
-        </div>
-    </md-list-item>
+    <div ng-show="!$ctrl.showColors" >
+        <md-list-item ng-repeat="news in $ctrl.newsList"
+                      ng-click="$ctrl.showDetails({news:news})">
+            <div class="md-list-item-text" layout="column">
+                <h4>{{ news.title}}</h4>
+            </div>
+        </md-list-item>
+
+    </div>
+    <div ng-show="$ctrl.showColors" >
+        <md-list-item ng-show="news.isLoading" ng-repeat-start="news in $ctrl.newsList"
+                      ng-click="$ctrl.showDetails({news:news})"
+                      style="background-color: lightgrey; color: black">
+            <div class="md-list-item-text" layout="column">
+                <md-progress-linear md-mode="indeterminate"></md-progress-linear>
+                <h4>{{ news.title}}</h4>
+            </div>
+        </md-list-item>
+        <md-list-item ng-show="!news.isLoading && !news.isInteresting" style="background-color: #FCE4EC; color: maroon"
+                      ng-click="$ctrl.showDetails({news:news})">
+            <div class="md-list-item-text" layout="column">
+                <h4>{{ news.title}}</h4>
+            </div>
+        </md-list-item>
+        <md-list-item ng-show="!news.isLoading && news.isInteresting" ng-repeat-end
+                      ng-click="$ctrl.showDetails({news:news})" style="background-color: #E8F5E9; color: #1B5E20"
+                      ng-click="$ctrl.showDetails({news:news})">
+            <div class="md-list-item-text" layout="column">
+                <h4>{{ news.title}}</h4>
+            </div>
+        </md-list-item>
+    </div>
 </md-list>

@@ -21,6 +21,8 @@
         <md-icon md-svg-icon="menu"></md-icon>
     </md-button>
     <h1>Neuro News</h1>
+    <span flex></span>
+    <md-switch ng-model="app.showColors"></md-switch>
 </md-toolbar>
 
 <!-- Container #2 -->
@@ -32,6 +34,7 @@
         <news-list
                 news-list="app.newsList"
                 selected="app.selectedNews"
+                show-colors="app.showColors"
                 on-selected="app.selectNews(news)">
         </news-list>
 
@@ -40,6 +43,7 @@
     <md-content flex id="content">
         <!-- Custom NewsDetails component -->
         <news-details
+                show-colors="app.showColors"
                 selected="app.selectedNews">
         </news-details>
     </md-content>

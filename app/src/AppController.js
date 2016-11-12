@@ -5,17 +5,18 @@ function AppController(NewsDataService) {
     self.selectedNews = null;
     self.newsList = [];
     self.selectNews = selectNews;
+    self.showColors = false;
 
     // Load all registered users
 
-    self.isLoading=true;
+    self.isLoading = true;
     NewsDataService
         .loadAllNews()
         .then(function (newsList) {
             self.isLoading = false;
             self.newsList = [].concat(newsList);
             // self.selectedNews = newsList[0];
-            angular.forEach(self.newsList, function(news){
+            angular.forEach(self.newsList, function (news) {
                 NewsDataService.updateStatus(news);
             });
         });

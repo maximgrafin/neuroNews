@@ -7,7 +7,8 @@ export default {
         bindings: {
             newsList: '<',
             selected: '<',
-            showDetails: '&onSelected'
+            showDetails: '&onSelected',
+            showColors: '<'
         },
         mmm:"asdasd",
         templateUrl: 'src/users/components/list/NewsList.html'

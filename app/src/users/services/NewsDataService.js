@@ -18,6 +18,7 @@ function NewsDataService($q, $timeout, $http) {
             return NewsDataService.isInteresting(news)
                 .then(function (data) {
                     news.isInteresting = data.isInteresting;
+                    news.loading = true;
                 }).finally(function () {
                     news.isLoading = false;
                 });

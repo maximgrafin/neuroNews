@@ -2,7 +2,7 @@
 var http = require('http');
 var url = require('url');
 var predictor = require('./predictiveservices');
-
+var metaDataExtractor = require('./metaDataExtractor');
 
 //Lets define a port we want to listen to
 const PORT = 4567;
@@ -12,8 +12,7 @@ function handleRequest(request, response) {
     try {
         // response request.
         var url_parts = url.parse(request.url, true);
-        var query = url_parts.query;
-        var meta = query.meta.split(",");
+        var meta = metaDataExtractor.getMetaData(query.meta);
         predictor.predictByMeta(meta, function (data) {
             response.end('It Works!' + data);
         });

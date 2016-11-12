@@ -1,22 +1,17 @@
-/**
- * Users DataService
- * Uses embedded, hard-coded data model; acts asynchronously to simulate
- * remote data service call(s).
- *
- * @returns {{loadAll: Function}}
- * @constructor
- */
-
 import news from 'src/users/services/news';
+import MetaDataExtractor from 'src/users/services/MetaDataExtractor';
+import common from 'src/users/services/common';
+import PredictiveServices from 'src/users/services/PredictiveServices';
 
 function NewsDataService($q, $timeout) {
     // Promise-based API
     var NewsDataService = {
         loadAllNews: function () {
-            angular.forEach(news, function (n) {
-                n.isInteresting = false;
+            var deferred = $q.defer();
+            MetaDataExtractor.readData(function (data) {
+                deferred.resolve(data);
             });
-            return $q.when(news)
+            return deferred.promise;
         },
         updateStatus: function (news) {
             news.isLoading = true;
@@ -28,6 +23,14 @@ function NewsDataService($q, $timeout) {
                 });
         },
         isInteresting: function (news) {
+            PredictiveServices.predictEntryScore(news,
+                function (data) {
+                    console.log('Predicted=' + data);
+                });
+
+
+            var metadata = MetaDataExtractor.getMetaData(news).join("|");
+            console.log(metadata);
             return $timeout(function () {
                 return {
                     "isInteresting": Math.random() > 0.5

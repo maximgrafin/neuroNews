@@ -24,12 +24,14 @@ function handleRequest(request, response) {
             response.end();
         } else {
             var requestData = '';
-            request.on('data', function(data) { requestData += data;});
+            request.on('data',
+                function (data) {
+                    requestData += data;
+                });
 
-            request.on('end', function() 
-            {
+            request.on('end', function () {
                 console.log("HttpRequestBody=" + requestData);
-                var requestObj = JSON.parse(responseString);
+                var requestObj = JSON.parse(requestData).meta;
                 var meta = metaDataExtractor.getMetaData(requestObj);
                 predictor.predictByMeta(meta, function (data) {
                     response.end('It Works!' + data);

@@ -27,7 +27,7 @@ function NewsDataService($q, $timeout, $http) {
             $http({
                 url: 'http://127.0.0.1:4567',
                 method: "POST",
-                data: {meta: angular.toJson(news)}
+                data: {meta: news}
             }).then(function (data) {
                 console.log("predictor:" + data);
             });

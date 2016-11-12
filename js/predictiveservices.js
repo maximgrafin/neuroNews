@@ -18,8 +18,8 @@ function getPrediction(pieceOfNews, callback){
 function getPredictionByMeta(metadata, callback)
 {
     var url = 'europewest.services.azureml.net';
-    var path = '/workspaces/47d4f830adac4031953eadd43c9f816f/services/e906063e6aff4920a0d1e479798912e1/execute?api-version=2.0&format=swagger';
-    var api_key = 'hlXQ8mZXAjCX+BTH7V0fv4z03KfxGMDgoL0v/VNS33XdXfT2Z/DLOJhzMhHzpcKBxVM6rwQ/onUrflw+y5PHlA==';
+    var path = '/subscriptions/cf985d35a3854e0c8173015d3117c7b9/services/0e3760dc6d77427db34a4bba6de3739e/execute?api-version=2.0&format=swagger';
+    var api_key = '1ZbV+IxOYsvWFOv9/PWITYFnbv6tYJOLhefzgMXhNNrbgUqxVbrK7KI3UiSxXPjVhcAepEiugziVlTaWH6k+Jw==';
     var headers = { 'Content-Type':'application/json', Authorization: 'Bearer '+ api_key};
 
     common.performRequest(url, path, 'POST', headers, getPredictionServiceJson(metadata), function(data)

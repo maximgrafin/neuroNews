@@ -8,7 +8,7 @@ module.exports =
         firebase.initializeApp({databaseURL: "https://dpahthon1611.firebaseio.com"});
         var bdt_ref = firebase.database().ref('/feuerfrei/aufschaltung/ht0/feed/wire/article/dpasrv_bdt/latest/entries');
 
-        bdt_ref.limitToLast(2).on('value', show);
+        bdt_ref.limitToLast(1).on('value', show);
 
         console.log('hello world');
     }
@@ -17,6 +17,7 @@ module.exports =
 var cognitiveservices = require('./cognitiveservices');
 var common = require('./common');
 var metaDataExtractor = require('./metaDataExtractor');
+var predictiveservices = require('./predictiveservices');
 
 function show(snapshot) 
 {
@@ -30,6 +31,6 @@ function show(snapshot)
         var row = metadata.map(x => common.getJsonValue(x)).join(',');
         fs.appendFileSync('./output/out.txt', row + '\n');
         console.log(pieceOfNews.id + ',' + row);
-        //getPrediction(entry, function(data) {console.log('Predicted=' + data);});
+        predictiveservices.predictByMeta(metadata, function(data) {console.log('Predicted=' + data);});
     }
 };

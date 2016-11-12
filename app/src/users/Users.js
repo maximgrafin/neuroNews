@@ -1,6 +1,6 @@
 // Load the custom app ES6 modules
 
-import UsersDataService from 'src/users/services/UsersDataService';
+import NewsDataService from 'src/users/services/NewsDataService';
 
 import UsersList from 'src/users/components/list/UsersList';
 import NewsList from 'src/users/components/list/NewsList';
@@ -15,4 +15,4 @@ export default angular
   .component(NewsList.name, NewsList.config)
   .component(NewsDetails.name, NewsDetails.config)
 
-  .service("UsersDataService", UsersDataService);
+  .service("NewsDataService", NewsDataService);

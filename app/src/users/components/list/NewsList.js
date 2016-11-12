@@ -5,7 +5,7 @@ export default {
     name: 'newsList',
     config: {
         bindings: {
-            news: '<',
+            newsList: '<',
             selected: '<',
             showDetails: '&onSelected'
         },

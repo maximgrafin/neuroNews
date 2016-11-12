@@ -8,7 +8,7 @@ module.exports =
         firebase.initializeApp({databaseURL: "https://dpahthon1611.firebaseio.com"});
         var bdt_ref = firebase.database().ref('/feuerfrei/aufschaltung/ht0/feed/wire/article/dpasrv_bdt/latest/entries');
 
-        bdt_ref.limitToLast(1).on('value', show);
+        bdt_ref.limitToLast(100).on('value', show);
 
         console.log('hello world');
     }

@@ -1,10 +1,10 @@
 <!-- NOTE: @see ngClick for how to pass data selection to outside expression -->
 <md-list>
-    <md-list-item ng-repeat="news in $ctrl.news">
-        <md-button ng-click="$ctrl.showDetails({news:news})" ng-class="{'selected' : news === $ctrl.selected }">
-            <!--<md-icon md-svg-icon="{{user.avatar}}" class="avatar"></md-icon>-->
+    <md-list-item ng-repeat="news in $ctrl.newsList">
+        <md-button ng-disabled="news.isLoading || !news.isInteresting" ng-click="$ctrl.showDetails({news:news})" >
             {{news.title}}
-            <md-progress-linear md-mode="indeterminate"></md-progress-linear>
+            {{!!news.isInteresting}}
+            <md-progress-linear ng-show="news.isLoading" md-mode="indeterminate"></md-progress-linear>
         </md-button>
     </md-list-item>
 </md-list>

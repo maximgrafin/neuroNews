@@ -23,8 +23,20 @@ function NewsDataService($q, $timeout, $http) {
                 });
         },
         isInteresting: function (news) {
-            var metadata = MetaDataExtractor.getMetaData(news).join(",");
-            $http.get("http://localhost:4567/?meta="+metadata);
+            $http.defaults.headers.post["Content-Type"] = "application/json";
+            $http({
+                url: 'http://127.0.0.1:4567',
+                method: "POST",
+                data: {meta: angular.toJson(news)}
+            }).then(function (data) {
+                console.log("predictor:" + data);
+            });
+            // ;
+            // // var metadata = MetaDataExtractor.getMetaData(news).join(",");
+            // $http.post("http://127.0.0.1:4567/", {meta: angular.toJson(news)})
+            //     .then(function (data) {
+            //         console.log("predictor:" + data);
+            //     });
 
             PredictiveServices.predictEntryScore(news,
                 function (data) {

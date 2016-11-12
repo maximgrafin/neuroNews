@@ -1,0 +1,25 @@
+{
+  "name": "azure-query-js",
+  "author": "Microsoft Corporation",
+  "version": "0.1.0",
+  "description": "Windows Azure library for querying remote data sources.",
+  "tags": ["query", "azure"],
+  "keywords": ["query", "azure"],
+  "main": "./lib/Query.js",
+  "license": "Apache-2.0",
+  "scripts": {
+    "build": "coffee -c -o lib src"
+  },
+  "dependencies": {
+    "esprima": "^2.7.2"
+  },
+  "devDependencies": {
+    "mocha": "^2.2.4",
+    "jshint": "^2.7.0",
+    "coffee-script": "^1.9.2"
+  },
+  "repository": "Azure/azure-query-js",
+  "bugs" : {
+    "url": "http://github.com/Azure/azure-query-js/issues"
+  }
+}

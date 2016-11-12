@@ -1,0 +1,20 @@
+{
+  "name": "azure-odata-sql",
+  "version": "0.2.0",
+  "description": "Convert OData queries into SQL statements",
+  "main": "src/index.js",
+  "author": "Microsoft",
+  "repository": "Azure/azure-odata-sql-js",
+  "license": "MIT",
+  "scripts": {
+    "test": "npm run lint & mocha",
+    "lint": "jshint src"
+  },
+  "dependencies": {
+  },
+  "devDependencies": {
+    "chai": "^3.0.0",
+    "jshint": "^2.9.1",
+    "mocha": "^2.2.5"
+  }
+}

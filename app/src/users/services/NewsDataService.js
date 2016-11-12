@@ -3,7 +3,7 @@ import MetaDataExtractor from 'src/users/services/MetaDataExtractor';
 import common from 'src/users/services/common';
 import PredictiveServices from 'src/users/services/PredictiveServices';
 
-function NewsDataService($q, $timeout) {
+function NewsDataService($q, $timeout, $http) {
     // Promise-based API
     var NewsDataService = {
         loadAllNews: function () {
@@ -23,6 +23,9 @@ function NewsDataService($q, $timeout) {
                 });
         },
         isInteresting: function (news) {
+            var metadata = MetaDataExtractor.getMetaData(news).join(",");
+            $http.get("http://localhost:4567/?meta="+metadata);
+
             PredictiveServices.predictEntryScore(news,
                 function (data) {
                     console.log('Predicted=' + data);
@@ -41,5 +44,5 @@ function NewsDataService($q, $timeout) {
     return NewsDataService;
 }
 
-export default ['$q', '$timeout', NewsDataService];
+export default ['$q', '$timeout', '$http', NewsDataService];
 

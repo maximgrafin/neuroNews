@@ -1,0 +1,1 @@
+module.exports = require("npm:azure-mobile-apps-client@2.0.0-rc1/sdk/src/index.js");

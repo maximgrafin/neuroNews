@@ -1,5 +1,5 @@
 // var https = require('https');
-// var WindowsAzure = require('azure-mobile-apps-js-client');
+// var WindowsAzure = require('azure-mobile-apps-client');
 
 module.exports = {
     getJsonValue: function (obj, defaultValue) {
@@ -10,19 +10,8 @@ module.exports = {
             return obj;
     },
     performRequest: function (url, path, method, headers, dataJson, success) {
-        function httpGet(theUrl) {
-            var xmlHttp = new XMLHttpRequest();
-            xmlHttp.open("GET", theUrl, false); // false for synchronous request
-            xmlHttp.send(null);
-            return xmlHttp.responseText;
-        }
 
-        var xmlHttp = new XMLHttpRequest();
-        xmlHttp.open(method, "https://" + url + path + "?" + dataJson, false);
-        for (var k in headers) {
-            xmlHttp.setRequestHeader(k, headers[k]);
-        }
-        xmlHttp.send();
+        var client = new WindowsAzure.MobileServiceClient();
 
         if (method == 'GET') {
             path += '?' + dataJson;

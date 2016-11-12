@@ -1,0 +1,1 @@
+module.exports = require("npm:azure-query-js@0.1.0/lib/Query.js");

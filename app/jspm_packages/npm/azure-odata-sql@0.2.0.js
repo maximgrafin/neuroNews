@@ -1,0 +1,1 @@
+module.exports = require("npm:azure-odata-sql@0.2.0/src/index.js");

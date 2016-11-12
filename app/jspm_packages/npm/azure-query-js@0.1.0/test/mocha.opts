@@ -1,0 +1,6 @@
+--compilers coffee:coffee-script/register
+--reporter spec
+--ui qunit
+--require assert
+--colors
+

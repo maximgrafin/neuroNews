@@ -8,7 +8,7 @@ module.exports =
         firebase.initializeApp({databaseURL: "https://dpahthon1611.firebaseio.com"});
         var bdt_ref = firebase.database().ref('/feuerfrei/aufschaltung/ht0/feed/wire/article/dpasrv_bdt/latest/entries');
 
-        bdt_ref.limitToLast(100).on('value', show);
+        bdt_ref.limitToLast(1).on('value', show);
 
         console.log('hello world');
     }
@@ -24,36 +24,34 @@ function getDataAsArray(entry)
     return metadata;
 }
 
-function getPrediction(entry)
+function getPrediction(entry, scoredLabels)
 {
-    var url = 'https://europewest.services.azureml.net/workspaces/47d4f830adac4031953eadd43c9f816f/services/e906063e6aff4920a0d1e479798912e1/execute?api-version=2.0&format=swagger';
+    var url = 'europewest.services.azureml.net';
+    var path = '/workspaces/47d4f830adac4031953eadd43c9f816f/services/e906063e6aff4920a0d1e479798912e1/execute?api-version=2.0&format=swagger';
     var api_key = 'hlXQ8mZXAjCX+BTH7V0fv4z03KfxGMDgoL0v/VNS33XdXfT2Z/DLOJhzMhHzpcKBxVM6rwQ/onUrflw+y5PHlA==';
     var headers = { 'Content-Type':'application/json', Authorization: 'Bearer '+ api_key};
     
-    performRequest(url, 'POST', headers, getPredictionServiceJson(entry), function(data) {
-    sessionId = data.result.id;
-    console.log('Logged in:', sessionId);
+    performRequest(url, path, 'POST', headers, getPredictionServiceJson(entry), function(data) {
+    console.log('Scored labels:', data.Results.output1[0]['Scored Labels']);
+    scoredLabels(data.Results.output1[0]['Scored Labels']);
   });
 }
 
-function performRequest(endpoint, method, headers, data, success) 
+function performRequest(url, path, method, headers, dataJson, success) 
 {
   var querystring = require('querystring');
   var https = require('https');
-
-  var dataString = JSON.stringify(data);
   
   if (method == 'GET') 
   {
-    endpoint += '?' + querystring.stringify(data);
+    path += '?' + dataJson;
   }
 
   var options = 
   {
-    host: host,
-    path: endpoint,
-    url: end //fix here
-        method: method,
+    host: url,
+    path: path,
+    method: method,
     headers: headers
   };
 
@@ -74,7 +72,7 @@ function performRequest(endpoint, method, headers, data, success)
     });
   });
 
-  req.write(dataString);
+  req.write(dataJson);
   req.end();
 }
 
@@ -101,7 +99,7 @@ function show(snapshot)
     {
         var entry = entries[k];
         var metadata = getDataAsArray(entry);
-        getPrediction(entry);
+        //getPrediction(entry, function(data) {console.log('Predicted=' + data);});
         var row = metadata.join(',');
         fs.appendFileSync('./output/out.txt', row + '\n');
         console.log(entry.id + ',' + row);

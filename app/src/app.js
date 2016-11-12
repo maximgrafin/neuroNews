@@ -21,7 +21,8 @@ export default angular.module('starter-app', ['ngMaterial', 'ngSanitize', Users.
             .icon("twitter", "./assets/svg/twitter.svg", 24)
             .icon("phone", "./assets/svg/phone.svg", 24);
 
-        $mdThemingProvider.theme('default');
+        $mdThemingProvider.theme('default')
+            .primaryPalette('teal');
 
         //Reset headers to avoid OPTIONS request (aka preflight)
         $httpProvider.defaults.headers.common = {};

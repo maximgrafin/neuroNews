@@ -9,6 +9,7 @@ export default {
             selected: '<',
             showDetails: '&onSelected'
         },
+        mmm:"asdasd",
         templateUrl: 'src/users/components/list/NewsList.html'
     }
 };

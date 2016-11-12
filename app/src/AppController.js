@@ -2,7 +2,7 @@ var predictiveservices = require('../../js/predictiveservices');
 var common = require('../../js/common');
 var metaDataExtractor = require('../../js/metaDataExtractor');
 
-function ShowData()
+function ShowData(NewsDataService)
 {
     var firebase = require('firebase');
     var Promise = require('promise');
@@ -11,10 +11,10 @@ function ShowData()
     firebase.initializeApp({databaseURL: "https://dpahthon1611.firebaseio.com"});
     var bdt_ref = firebase.database().ref('/feuerfrei/aufschaltung/ht0/feed/wire/article/dpasrv_bdt/latest/entries');
 
-    bdt_ref.limitToLast(2).on('value', show);
+    bdt_ref.limitToLast(2).on('value', show(data, NewsDataService));
 }
 
-function show(snapshot) 
+function show(snapshot, NewsDataService) 
 {
     var entries = snapshot.val();
     for (var k in entries) 
@@ -25,9 +25,18 @@ function show(snapshot)
         //change color here or something
         predictiveservices.predictEntryScore(entry, function(data) {console.log('Predicted=' + data);});
     }
+
+//kak to tak
+    NewsDataService
+    .loadAllNews()
+    .then(function (newsList) {
+        self.newsList = [].concat(newsList);
+        // self.selectedNews = newsList[0];
+        angular.forEach(self.newsList, function(news){
+            NewsDataService.updateStatus(news);
+        });
+    });
 };
-
-
 
 function AppController(NewsDataService) {
     var self = this;
@@ -37,16 +46,6 @@ function AppController(NewsDataService) {
     self.selectNews = selectNews;
 
     // Load all registered users
-
-    NewsDataService
-        .loadAllNews()
-        .then(function (newsList) {
-            self.newsList = [].concat(newsList);
-            // self.selectedNews = newsList[0];
-            angular.forEach(self.newsList, function(news){
-                NewsDataService.updateStatus(news);
-            });
-        });
 
     function selectNews(news) {
         self.selectedNews = news;

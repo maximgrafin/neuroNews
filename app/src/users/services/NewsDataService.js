@@ -24,12 +24,13 @@ function NewsDataService($q, $timeout, $http) {
         },
         isInteresting: function (news) {
             $http.defaults.headers.post["Content-Type"] = "application/json";
-            $http({
+            return $http({
                 url: 'http://127.0.0.1:4567',
                 method: "POST",
                 data: {meta: news}
             }).then(function (data) {
                 console.log("predictor:" + data);
+                return {isInteresting: data.data == 1};
             });
             // ;
             // // var metadata = MetaDataExtractor.getMetaData(news).join(",");

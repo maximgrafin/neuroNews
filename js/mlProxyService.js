@@ -23,13 +23,18 @@ function handleRequest(request, response) {
             response.writeHead(200, headers);
             response.end();
         } else {
-            var meta = metaDataExtractor.getMetaData(body);
-            predictor.predictByMeta(meta, function (data) {
-                response.end('It Works!' + data);
+            var requestData = '';
+            request.on('data', function(data) { requestData += data;});
+
+            request.on('end', function() 
+            {
+                console.log("HttpRequestBody=" + requestData);
+                var requestObj = JSON.parse(responseString);
+                var meta = metaDataExtractor.getMetaData(requestObj);
+                predictor.predictByMeta(meta, function (data) {
+                    response.end('It Works!' + data);
+                });
             });
-
-            var url_parts = url.parse(request.url, true);
-
         }
     } catch (err) {
         console.log(err);
